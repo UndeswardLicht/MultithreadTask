@@ -2,17 +2,19 @@ package com.project.Models;
 
 import com.project.Models.States.*;
 
-public class Ship{
+import java.io.Serializable;
+
+public class Ship implements Serializable {
     private String shipName;
-    private int shipLoadCapacity;
+    private int shipLoad;
     private boolean isAtBerth;
     private AbstractState state;
 
-    public Ship(String shipName, int loadCapacity){
+    public Ship(String shipName, int load){
         this.state = new WatingState(this);
         setAtBerth(false);
         this.shipName = shipName;
-        this.shipLoadCapacity = loadCapacity;
+        this.shipLoad= load;
     }
 
     public String getShipName() {
@@ -23,12 +25,16 @@ public class Ship{
         this.shipName=shipName;
     }
 
-    public int getShipLoadCapacity() {
-        return shipLoadCapacity;
+    public int getShipLoad() {
+        return shipLoad;
     }
 
-    public void setShipLoadCapacity(int shipLoadCapacity) {
-        this.shipLoadCapacity=shipLoadCapacity;
+    public void setShipLoad(int shipLoad) {
+        this.shipLoad=shipLoad;
+    }
+
+    public boolean isShipEmpty(){
+        return getShipLoad() == 0;
     }
 
     public boolean isAtBerth() {
