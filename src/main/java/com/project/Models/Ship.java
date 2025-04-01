@@ -3,6 +3,7 @@ package com.project.Models;
 import com.project.Models.States.*;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Ship implements Serializable {
     private String shipName;
@@ -51,5 +52,18 @@ public class Ship implements Serializable {
 
     public void changeState(AbstractState state) {
         this.state=state;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ship ship=(Ship) o;
+        return shipLoad == ship.shipLoad && Objects.equals(shipName, ship.shipName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shipName, shipLoad);
     }
 }
