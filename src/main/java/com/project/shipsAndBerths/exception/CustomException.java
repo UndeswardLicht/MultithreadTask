@@ -1,4 +1,4 @@
-package com.project.Exceptions;
+package com.project.shipsAndBerths.exception;
 
 public class CustomException extends RuntimeException {
     public CustomException(String message) {

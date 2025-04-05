@@ -1,6 +1,6 @@
-package com.project.Models.States;
+package com.project.shipsAndBerths.model.state;
 
-import com.project.Models.Ship;
+import com.project.shipsAndBerths.model.Ship;
 
 public class WatingState extends AbstractState {
 
@@ -9,17 +9,17 @@ public class WatingState extends AbstractState {
     }
 
     @Override
-    public String WaitingInHarbour() {
+    public String waitingInHarbour() {
         return "";
     }
 
     @Override
-    public String Unloading() {
+    public String unloading() {
         return "";
     }
 
     @Override
-    public String LeavingTheHarbour() {
+    public String leavingTheHarbour() {
         return "";
     }
 }

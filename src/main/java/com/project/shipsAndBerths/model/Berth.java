@@ -1,11 +1,11 @@
-package com.project.Models;
+package com.project.shipsAndBerths.model;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Berth implements Serializable {
+public class Berth {
     private static final Logger logger = LogManager.getLogger(Berth.class);
     private final int berthId;
     private final int warehouseCapacity;
@@ -63,5 +63,14 @@ public class Berth implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(berthId, warehouseCapacity);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb=new StringBuilder("Berth{");
+        sb.append("berthId=").append(berthId);
+        sb.append(", warehouseCapacity=").append(warehouseCapacity);
+        sb.append('}');
+        return sb.toString();
     }
 }

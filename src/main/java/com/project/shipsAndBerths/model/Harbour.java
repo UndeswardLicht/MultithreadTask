@@ -1,10 +1,10 @@
-package com.project.Models;
+package com.project.shipsAndBerths.model;
 
-import com.project.Exceptions.CustomException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 public final class Harbour {
     private static final Logger logger = LogManager.getLogger(Harbour.class);
@@ -39,9 +39,10 @@ public final class Harbour {
     public Ship takeShipToBerth(){
         try {
             return shipsInHarbour.getFirst();
-        }catch (CustomException ce){
+        }catch (NoSuchElementException nsee){
             logger.error("No ships in harbour anymore!");
-            throw ce;
+            nsee.printStackTrace();
+            throw nsee;
         }
     }
 

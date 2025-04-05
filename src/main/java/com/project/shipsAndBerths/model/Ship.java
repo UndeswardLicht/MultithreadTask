@@ -1,21 +1,19 @@
-package com.project.Models;
+package com.project.shipsAndBerths.model;
 
-import com.project.Models.States.*;
+import com.project.shipsAndBerths.model.state.ShipState;
 
-import java.io.Serializable;
 import java.util.Objects;
+import java.util.concurrent.Callable;
 
-public class Ship implements Serializable {
+public class Ship implements Callable<Boolean> {
     private String shipName;
     private int shipLoad;
-    private boolean isAtBerth;
-    private AbstractState state;
+    private ShipState currentState;
 
     public Ship(String shipName, int load){
-        this.state = new WatingState(this);
-        setAtBerth(false);
         this.shipName = shipName;
         this.shipLoad= load;
+        this.currentState = ShipState.WAITING;
     }
 
     public String getShipName() {
@@ -38,20 +36,12 @@ public class Ship implements Serializable {
         return getShipLoad() == 0;
     }
 
-    public boolean isAtBerth() {
-        return isAtBerth;
+    public ShipState getCurrentState() {
+        return currentState;
     }
 
-    public void setAtBerth(boolean atBerth) {
-        isAtBerth=atBerth;
-    }
-
-    public AbstractState getState() {
-        return state;
-    }
-
-    public void changeState(AbstractState state) {
-        this.state=state;
+    public void setCurrentState(ShipState currentState) {
+        this.currentState=currentState;
     }
 
     @Override
@@ -65,5 +55,19 @@ public class Ship implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(shipName, shipLoad);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb=new StringBuilder("Ship{");
+        sb.append("shipName='").append(shipName).append('\'');
+        sb.append(", shipLoad=").append(shipLoad);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    @Override
+    public Boolean call() throws Exception {
+        return false;
     }
 }
